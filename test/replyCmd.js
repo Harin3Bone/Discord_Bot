@@ -1,11 +1,9 @@
 var myFunction = require('../functions.js');
 
 var txt = "!c Hello World"
-var res = txt.toUpperCase()
-var txt3 = txt.toUpperCase()
-
-var gundam = myFunction.makeUpperCase(txt)
+var txt2 = myFunction.makeUpperCase(txt)
+var txt3 = myFunction.onlyPrefix(txt)
 
 console.log(txt);
-console.log(res);
-console.log(gundam);
+console.log(txt2);
+console.log(txt3);
