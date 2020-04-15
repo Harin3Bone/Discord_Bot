@@ -2,30 +2,32 @@
 const myFunction = require('./functions');
 
 //! Reply Message Setting 
-//? Prefix for CMD 
-let prefixReply = '!C '
-let prefixYoutube = '!Y '
-
 //? Basic Command Setup
 function basicCmd(msg) {
-    //# User message input
-    let replyCmd = myFunction.makeUpperCase(msg.content)
+    //# Substring message input
+    let replyCmd = myFunction.getCommand(msg.content)
 
     //# Reply from bot
     //* Test A
-    if (replyCmd === prefixReply + 'PING') {
+    if (replyCmd === 'PING') {
         msg.reply(replyCmd);
     }
 
     //* Test B
-    if (replyCmd === prefixReply + 'PONG') {
+    if (replyCmd === 'PONG') {
         msg.reply(replyCmd);
     }
 }
 
 //? Youtube Command Setup
 function youtubeCmd(msg){
-    
+    //# Substring message input
+    let replyCmd = myFunction.getCommand(msg.content)
+
+    //* Test B
+    if (replyCmd === 'PANG') {
+        msg.reply(replyCmd);
+    }
 }
 
 //! Export module

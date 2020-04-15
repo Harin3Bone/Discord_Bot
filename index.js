@@ -4,7 +4,9 @@ const client = new Discord.Client();
 
 
 //! Import Feature Function
-const messaging = require('./message.js');
+const myFunction = require('./controller/functions.js');
+const messaging = require('./controller/message.js');
+
 
 //! Console log Display
 client.on('ready', () => {
@@ -13,8 +15,21 @@ client.on('ready', () => {
 
 //! Discord reply
 client.on('message', msg => {
+    let getPrefix = myFunction.getPrefix(msg.content)    
+
+    switch (getPrefix) {
+        //# Basic Command
+        case '!c':
+            messaging.basicCmd(msg)
+            break;
+
+        //# Youtube Command
+        case '!y':
+            messaging.youtubeCmd(msg)
+            break;
+    }
     //# Basic Command
-    messaging.basicCmd(msg)        
+
 });
 
 //! Token Identify
