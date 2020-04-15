@@ -13,27 +13,43 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-//! Discord reply
-client.on('message', msg => {
-    let getPrefix = myFunction.getPrefix(msg.content)    
+//! Discord Text Channel
+client.on('message', message => {
+    let getPrefix = myFunction.getPrefix(message.content)
 
     switch (getPrefix) {
         //# Basic Command
         case '!c':
-            messaging.basicCmd(msg)
+            messaging.basicCmd(message)
             break;
 
-        //# Youtube Command
+            //# Youtube Command
         case '!y':
-            messaging.youtubeCmd(msg)
-            break;
+            messaging.youtubeCmd(message)
+            break;        
     }
     //# Basic Command
 
 });
 
-//! Token Identify
-client.login('Njk5ODc4ODExMDk2ODQyMjkx.Xpa4lQ.8jvA46EmkQ6PFARltAH7pUJA4pE');
+//! Discord Voice Channel
+client.on('message', async message => {    
+    if (!message.guild) return;
 
-//! Invite Link
-//? https://discordapp.com/api/oauth2/authorize?client_id=699878811096842291&permissions=8&scope=bot
+    if (message.content === '!join') {        
+        if (message.member.voice.channel) {
+            const connection = await message.member.voice.channel.join();
+            message.reply('Tutorial Bot has been connect to your discord')
+        } else {
+            message.reply('Please enter some room and then use command "!join" ');
+        }
+    }
+
+    if (message.content === '!leave') {
+        const disconnection = message.member.voice.channel.leave();
+        message.reply('Tutorial Bot has been disconnect from your discord, Thank you')
+    }    
+});
+
+//! Bot Identify
+client.login('Njk5ODc4ODExMDk2ODQyMjkx.XpbctA.ImGzubQ_NmigqyCpjRV8SfzBQJc');
